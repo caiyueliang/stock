@@ -19,14 +19,15 @@ import numpy as np
 import akshare as ak
 import bokeh as bh
 
+
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             # 设置路由
             (r"/", HomeHandler),
             (r"/stock/", HomeHandler),
-            (r"/test_akshare", TestHandler),# 测试页面，做写js 测试。
-            (r"/test2", Test2Handler),# 测试页面，做写js 测试。
+            (r"/test", TestHandler),            # 测试页面，做写js 测试。
+            (r"/test2", Test2Handler),          # 测试页面，做写js 测试。
             # 使用datatable 展示报表数据模块。
             (r"/stock/api_data", dataTableHandler.GetStockDataHandler),
             (r"/stock/data", dataTableHandler.GetStockHtmlHandler),
@@ -68,18 +69,23 @@ class HomeHandler(webBase.BaseHandler):
                     stockstatsVersion="0.3.2",
                     pythonStockVersion = common.__version__,
                     leftMenu=webBase.GetLeftMenu(self.request.uri))
+
+
 class TestHandler(webBase.BaseHandler):
     @gen.coroutine
     def get(self):
-        self.render("test_akshare.html", entries="hello",
+        self.render("test.html", entries="hello",
                     pythonStockVersion=common.__version__,
                     leftMenu=webBase.GetLeftMenu(self.request.uri))
+
+
 class Test2Handler(webBase.BaseHandler):
     @gen.coroutine
     def get(self):
         self.render("test2.html", entries="hello",
                     pythonStockVersion=common.__version__,
                     leftMenu=webBase.GetLeftMenu(self.request.uri))
+
 
 def main():
     tornado.options.parse_command_line()
