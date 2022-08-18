@@ -2,8 +2,8 @@
 
 DOCKER_TAG=pythonstock/pythonstock:latest
 
-sudo rm -rf data
-sudo rm -f jobs/nohup.out
+# sudo rm -rf data
+# sudo rm -f jobs/nohup.out
 
 echo " docker build -f Dockerfile -t ${DOCKER_TAG} ."
 docker build -f Dockerfile -t ${DOCKER_TAG} .
